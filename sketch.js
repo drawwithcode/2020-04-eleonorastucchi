@@ -1,45 +1,53 @@
-// costanti
-let myFace;
-let myText;
+let myText = "Enter password";
+let myImage;
+let inp;
 
 function preload() {
-  // put preload code here
+  myImage = loadImage("./assets/images/myimage.png");
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight)
-  // put setup code here
-  background("purple");
-  myFace = loadImage("./assets/image/face.png");
+  createCanvas(windowWidth, windowHeight);
+  background(0, 128, 130);
 
-  // button
-  buttonStart = createButton("Click to start");
-  buttonStart.position(windowWidth * 3 / 7, windowHeight * 6 / 7);
-  buttonStart.mousePressed(nextStep);
+
+  let inp = createInput('');
+  inp.input(myInputEvent);
+  inp.position(windowWidth / 2 - inp.width / 2, windowHeight * 3.4 / 5);
+
 }
 
-function draw() {
-  // put drawing code here
-  // image
-  imageMode(CENTER);
-  image(myFace, windowWidth / 2, windowHeight / 2, windowWidth / 3, windowHeight / 2);
 
-  // text
+function draw() {
+
   push();
-  let myText = "Welcome to the purple meme photobooth"
-  fill("white");
-  strokeWeight(5);
-  stroke("black");
-  textSize(50);
-  textFont("Coda Caption");
-  textAlign(CENTER);
-  text(myText, windowWidth / 2, windowHeight / 6);
+  fill(0, 128, 130);
+  noStroke();
+  rect(windowWidth / 2.2, windowHeight * 3.25 / 5, 150, 30)
+  pop();
+
+  imageMode(CENTER);
+  image(myImage, windowWidth / 2, windowHeight / 2, myImage.width / 2, myImage.height / 2);
+
+  push();
+  textFont("Arimo");
+  stroke("black")
+  strokeWeight(0.7)
+  textSize(17);
+  fill("black");
+  text(myText, windowWidth / 2.15, windowHeight * 3.35 / 5);
   pop();
 }
 
-// to next step
-function nextStep() {
-  window.open("main.html", "_self");
+
+function keyPressed() {
+  if (keyCode == ENTER) {
+    window.open("index1.html", "_self");
+  }
+}
+
+function myInputEvent() {
+
 }
 
 function windowResized() {
